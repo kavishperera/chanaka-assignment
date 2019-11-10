@@ -9,6 +9,7 @@ import java.util.List;
 import lk.chanaka_de_silva.Assignment.module.Category;
 import lk.chanaka_de_silva.Assignment.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,22 +31,30 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/get-all")
+    @GetMapping(value = "/get-all", produces = 
+            {
+//        MediaType.APPLICATION_JSON_VALUE, -> JSON encoding
+        MediaType.APPLICATION_XML_VALUE // -> XML encoding
+            }
+    )
     public List<Category> getAll() {
         return categoryService.findAll();
     }
 
-    @GetMapping("/find-one/{categoryId}")
+    @GetMapping(value = "/find-one/{categoryId}", produces = {
+        MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Category findOne(@PathVariable Integer categoryId) {
         return categoryService.findOne(categoryId);
     }
 
-    @PostMapping("/save")
+    @PostMapping(value = "/save", produces = {
+        MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Category save(@RequestBody Category categories) {
         return categoryService.save(categories);
     }
 
-    @DeleteMapping("/delete/{categoryId}")
+    @DeleteMapping(value = "/delete/{categoryId}", produces = {
+        MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Integer delete(@PathVariable Integer categoryId) {
         return categoryService.delete(categoryId);
     }
