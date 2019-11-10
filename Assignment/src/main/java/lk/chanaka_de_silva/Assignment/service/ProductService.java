@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lk.chanaka_de_silva.Assignment.repository.ProductRepository;
+import lk.kavishmanjitha.machine_issues_traking.v1.exception.handler.EntityNotFoundException;
 
 /**
  *
@@ -27,18 +28,28 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    @Transactional
     public Product save(Product products) {
         return productRepository.save(products);
     }
-    
-    public Product findOne(Integer productId){
-        return productRepository.getOne(productId);
+
+    public Product findOne(Integer productId) {
+        Product getProduct = productRepository.getOne(productId);
+        if (null != getProduct) {
+            return getProduct;
+        } else {
+            throw new EntityNotFoundException("PRDUCT NOT FOUND");
+        }
     }
 
     public Integer delete(Integer productId) {
-        Product products = productRepository.getOne(productId);
-        productRepository.delete(products);
-        return productId;
+        Product getProduct = productRepository.getOne(productId);
+        if (null != getProduct) {
+            productRepository.delete(getProduct);
+            return productId;
+        } else {
+            throw new EntityNotFoundException("PRDUCT NOT FOUND");
+        }
     }
-    
+
 }

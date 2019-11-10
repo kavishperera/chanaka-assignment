@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lk.chanaka_de_silva.Assignment.repository.CategoryRepository;
+import lk.kavishmanjitha.machine_issues_traking.v1.exception.handler.EntityNotFoundException;
 
 /**
  *
@@ -30,15 +31,24 @@ public class CategoryService {
     public Category save(Category categories) {
         return categoryRepository.save(categories);
     }
-    
-    public Category findOne(Integer categoryId){
-        return categoryRepository.getOne(categoryId);
+
+    public Category findOne(Integer categoryId) {
+        Category getCategory = categoryRepository.getOne(categoryId);
+        if (null != getCategory) {
+            return getCategory;
+        } else {
+            throw new EntityNotFoundException("CATEGORY NOT FOUND");
+        }
     }
 
     public Integer delete(Integer categoryId) {
-        Category category = categoryRepository.getOne(categoryId);
-        categoryRepository.delete(category);
-        return categoryId;
+        Category getCategory = categoryRepository.getOne(categoryId);
+        if (null != getCategory) {
+            categoryRepository.delete(getCategory);
+            return categoryId;
+        } else {
+            throw new EntityNotFoundException("CATEGORY NOT FOUND");
+        }
     }
 
 }
