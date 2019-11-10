@@ -17,9 +17,10 @@ import lombok.EqualsAndHashCode;
 public class Product implements Serializable {
 
     @Id
-    @Column(name = "productId", nullable = false)
+    @Basic
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productId;
+    private int id;
     @Basic
     @Column(name = "name", nullable = false, length = 50)
     private String name;
@@ -32,8 +33,8 @@ public class Product implements Serializable {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "product_category",
-            joinColumns = @JoinColumn(name = "productId", referencedColumnName = "productId"),
-            inverseJoinColumns = @JoinColumn(name = "categoryId", referencedColumnName = "categoryId"))
+            joinColumns = @JoinColumn(name = "productId", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "categoryId", referencedColumnName = "id"))
     private List<Category> categories;
 
 }

@@ -1,5 +1,6 @@
 package lk.chanaka_de_silva.Assignment.module;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +13,10 @@ import lombok.Data;
 public class Category implements Serializable {
 
     @Id
-    @Column(name = "categoryId", nullable = false)
+    @Basic
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int categoryId;
+    private int id;
 
     @Basic
     @Column(name = "name", nullable = false, length = 50)
@@ -24,6 +26,7 @@ public class Category implements Serializable {
     @Column(name = "description", nullable = false, length = 50)
     private String description;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private List<Product> products = new ArrayList<>();
 }
