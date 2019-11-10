@@ -1,4 +1,4 @@
-package lk.kavishmanjitha.machine_issues_traking.v1.exception.handler;
+package lk.chanaka_de_silva.Assignment.exception.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

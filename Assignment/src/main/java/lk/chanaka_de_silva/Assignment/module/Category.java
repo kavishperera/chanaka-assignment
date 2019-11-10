@@ -1,12 +1,14 @@
 package lk.chanaka_de_silva.Assignment.module;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
 @Entity
 @Table(name = "categories")
@@ -29,4 +31,7 @@ public class Category implements Serializable {
     @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private List<Product> products = new ArrayList<>();
+    
+    
+    
 }

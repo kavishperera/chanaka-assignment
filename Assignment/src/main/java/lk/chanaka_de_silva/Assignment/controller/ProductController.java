@@ -31,7 +31,12 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping(value = "/get-all", produces = {
+    @GetMapping("/")
+    public String testMockMVC() {
+        return "TEST MOCK MVC";
+    }
+
+    @GetMapping(value = "/find-all", produces = {
         MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<Product> getAll() {
         return productService.findAll();
@@ -43,8 +48,9 @@ public class ProductController {
         return productService.findOne(prodcutId);
     }
 
-    @PostMapping(value = "/save", produces = {
-        MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostMapping(value = "/save")
+//             produces = {
+//                MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Product save(@RequestBody Product product) {
         return productService.save(product);
     }

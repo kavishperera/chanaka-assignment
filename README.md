@@ -8,7 +8,8 @@ https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.2.1
 Spring Web
 Spring Data JPA
 Mysql Driver
+Project Lombok
+Jackson Dataformat XML
+Junit
 
-
-
-s
+3.

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lk.kavishmanjitha.machine_issues_traking.v1.exception.other;
+package lk.chanaka_de_silva.Assignment.exception.other;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;

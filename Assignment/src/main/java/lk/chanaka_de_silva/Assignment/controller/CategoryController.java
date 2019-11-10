@@ -31,10 +31,9 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping(value = "/get-all", produces = 
-            {
-//        MediaType.APPLICATION_JSON_VALUE, -> JSON encoding
-        MediaType.APPLICATION_XML_VALUE // -> XML encoding
+    @GetMapping(value = "/find-all", produces = {
+                MediaType.APPLICATION_JSON_VALUE, //-> JSON encoding
+                MediaType.APPLICATION_XML_VALUE // -> XML encoding
             }
     )
     public List<Category> getAll() {
@@ -47,8 +46,10 @@ public class CategoryController {
         return categoryService.findOne(categoryId);
     }
 
-    @PostMapping(value = "/save", produces = {
-        MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostMapping(value = "/save") 
+//            produces = {
+//        MediaType.APPLICATION_JSON_VALUE, 
+//        MediaType.APPLICATION_XML_VALUE})
     public Category save(@RequestBody Category categories) {
         return categoryService.save(categories);
     }

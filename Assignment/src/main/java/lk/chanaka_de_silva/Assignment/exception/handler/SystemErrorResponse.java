@@ -1,4 +1,4 @@
-package lk.kavishmanjitha.machine_issues_traking.v1.exception.handler;
+package lk.chanaka_de_silva.Assignment.exception.handler;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

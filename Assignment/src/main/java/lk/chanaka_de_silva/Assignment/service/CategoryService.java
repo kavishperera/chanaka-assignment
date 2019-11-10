@@ -6,12 +6,12 @@
 package lk.chanaka_de_silva.Assignment.service;
 
 import java.util.List;
+import lk.chanaka_de_silva.Assignment.exception.handler.EntityNotFoundException;
 import lk.chanaka_de_silva.Assignment.module.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lk.chanaka_de_silva.Assignment.repository.CategoryRepository;
-import lk.kavishmanjitha.machine_issues_traking.v1.exception.handler.EntityNotFoundException;
 
 /**
  *

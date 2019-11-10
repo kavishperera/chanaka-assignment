@@ -28,6 +28,8 @@ public class AuthenticationEntryPointImpl extends BasicAuthenticationEntryPoint 
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         PrintWriter writer = response.getWriter();
         writer.println("HTTP Status 401 - " + authEx.getMessage());
+        
+        System.out.println("Basic realm=" + getRealmName());
     }
  
     @Override
