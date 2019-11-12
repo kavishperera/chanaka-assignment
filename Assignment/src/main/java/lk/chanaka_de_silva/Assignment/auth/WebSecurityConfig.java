@@ -5,10 +5,9 @@
  */
 package lk.chanaka_de_silva.Assignment.auth;
 
-import lk.chanaka_de_silva.Assignment.auth.CustomAuthenticationEntryPoint;
-import lk.chanaka_de_silva.Assignment.auth.AuthConstant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -28,12 +27,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                     .disable()
                 .authorizeRequests()
-                    .anyRequest().authenticated()
+                    //.anyRequest().authenticated()
+                .antMatchers(HttpMethod.POST,"/api/**").authenticated()
+                .antMatchers(HttpMethod.PUT,"/api/**").authenticated()
+                .antMatchers(HttpMethod.DELETE,"/api/**").authenticated()
+                .antMatchers(HttpMethod.GET,"/api/**").permitAll()
                 .and()
                 .httpBasic()
                     .realmName(AuthConstant.REALM_NAME)
                     .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
-
     }
 
     @Override
